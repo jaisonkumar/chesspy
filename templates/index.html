@@ -226,7 +226,7 @@
                         {% if data.profile and data.profile.realName %}
                             {{ data.profile.realName }}
                         {% else %}
-                            N/A
+                            {{ data.username }} <!-- This will display the Lichess account name -->
                         {% endif %}
                         {% if data.title %}
                             ({{ data.title }})
@@ -303,3 +303,4 @@
     </main>
 </body>
 </html>
+    
