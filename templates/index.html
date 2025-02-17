@@ -49,7 +49,7 @@
             text-transform: uppercase;
             font-weight: bold;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px cyan;
+            text-shadow: 0 0 5px cyan; /* Reduced glow intensity */
         }
 
         header p {
@@ -57,16 +57,50 @@
             opacity: 0.8;
         }
 
+        /* Search Box Styling */
+        .form-control {
+            border-radius: 20px;
+            padding: 15px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: width 0.3s ease-in-out;
+            max-width: 400px;
+        }
+
+        .form-control:focus {
+            width: 600px;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        /* Button Styling */
+        .btn {
+            background: cyan;
+            border-radius: 20px;
+            padding: 10px 20px;
+            color: black;
+            border: none;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #00ffea;
+        }
+
         /* Cards Styling */
         .custom-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 900px;
         }
 
         .custom-card:hover {
@@ -81,19 +115,22 @@
         }
 
         .custom-card h3, .custom-card h5 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 0 0 5px cyan; /* Reduced glow intensity */
         }
 
         .custom-card p, .custom-card a {
-            font-size: 1rem;
+            font-size: 1.2rem;
             opacity: 0.8;
         }
 
         .custom-card a {
             display: inline-block;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: cyan;
             color: black;
             text-decoration: none;
@@ -110,6 +147,7 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             color: white;
+            width: 100%;
         }
 
         .table-striped tbody tr:nth-of-type(odd) {
@@ -128,28 +166,39 @@
             margin-bottom: 20px;
         }
 
-        /* Form Styling */
-        .form-control {
-            border-radius: 20px;
-            padding: 10px;
-            margin: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
+        /* Headings for Graphs and Charts */
+        h5, h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: cyan;
+            text-shadow: 0 0 5px cyan; /* Reduced glow intensity */
         }
 
-        .btn {
-            background: cyan;
-            border-radius: 20px;
-            padding: 10px 20px;
-            color: black;
-            border: none;
-            transition: 0.3s ease;
+        /* Tournament Table Styling */
+        table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .btn:hover {
-            background: #00ffea;
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
+        table th {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        table td {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) td {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
     </style>
 </head>
 <body>
@@ -240,32 +289,6 @@
                                     <tr>
                                         <td>{{ tournament.tournament.fullName }}</td>
                                         <td>{{ tournament.player.performance if tournament.player.performance else 'N/A' }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% endif %}
-
-                {% if latest_games %}
-                    <div class="mt-4">
-                        <h3>Recent Games</h3>
-                        <table class="table table-striped custom-card">
-                            <thead>
-                                <tr>
-                                    <th>Opponent</th>
-                                    <th>Game Mode</th>
-                                    <th>Result</th>
-                                    <th>Game Link</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for game in latest_games %}
-                                    <tr>
-                                        <td>{{ game.opponent }}</td>
-                                        <td>{{ game.mode }}</td>
-                                        <td>{{ game.result }}</td>
-                                        <td><a href="{{ game.link }}" target="_blank">View</a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
